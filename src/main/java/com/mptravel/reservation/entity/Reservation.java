@@ -3,6 +3,7 @@ package com.mptravel.reservation.entity;
 import com.mptravel.vacation.entity.Vacation;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "reservations")
@@ -12,6 +13,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Size(min = 5, message = "Name too short")
     private String name;
 
     private String email;

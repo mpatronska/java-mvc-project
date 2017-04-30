@@ -32,10 +32,6 @@
                     <th th:text="'Number of Tourists'"/>
                     <th th:text="'Title'"/>
                     <th th:text="'Image'"/>
-                    <!--<th th:text="'Description'"/>-->
-                    <!--<th th:text="'Price'"/>-->
-                    <!--<th th:text="'Start date'"/>-->
-                    <!--<th th:text="'End date'"/>-->
                     <th th:text="'Total Price'"/>
                 </tr>
                 </thead>
@@ -43,7 +39,6 @@
 
                 <div th:each="reservation : ${reservations}">
                     <tr class="table-warning">
-
                         <td th:text="${reservation.name}"/>
                         <td th:text="${reservation.email}"/>
                         <td th:text="${reservation.phoneNumber}"/>
@@ -51,16 +46,11 @@
 
                         <td th:text="${reservation.vacation.title}"/>
                         <td><img th:src="${reservation.vacation.imageUrl}" th:height="100px"/></td>
-                        <!--<td th:text="${#strings.abbreviate(reservation.vacation.description, 40)}"/>-->
-                        <!--<td th:text="${reservation.vacation.price} + ' &euro;'"/>-->
-                        <!--<td th:text="${#dates.format(reservation.vacation.startDate, 'yyyy-MM-dd')}"/>-->
-                        <!--<td th:text="${#dates.format(reservation.vacation.endDate, 'yyyy-MM-dd')}"/>-->
                         <td th:text="${reservation.touristsNumber * reservation.vacation.price} + ' &euro;'"/>
                     </tr>
                 </div>
                 </tbody>
             </table>
-
         </div>
     </div>
 </main>

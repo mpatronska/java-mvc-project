@@ -30,19 +30,19 @@
                 <form method="post">
                     <div class="form-group row">
                         <label class="form-control-label">Title</label>
-                        <input name="title" class="form-control"
+                        <input name="title" class="form-control" min="5"
                                placeholder="Enter Vacation Title" th:value="${vacation.title}"/>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-control-label">Description</label>
                         <textarea name="description" class="form-control" placeholder="Enter Vacation Description"
-                                  minlength="20" th:text="${vacation.description}"/>
+                                  min="20" th:text="${vacation.description}"/>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-control-label">Thumbnail</label>
-                        <input name="imageUrl" type="url" class="form-control"
+                        <input name="imageUrl" type="url" pattern="^(http|https)://.+" class="form-control"
                                placeholder="Enter URL to Image" th:value="${vacation.imageUrl}"/>
                     </div>
 

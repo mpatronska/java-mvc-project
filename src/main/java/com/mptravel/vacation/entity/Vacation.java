@@ -3,6 +3,7 @@ package com.mptravel.vacation.entity;
 import com.mptravel.reservation.entity.Reservation;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class Vacation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique = true)
     private String title;
 
     private String description;

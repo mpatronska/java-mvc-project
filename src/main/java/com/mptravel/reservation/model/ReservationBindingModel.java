@@ -2,16 +2,24 @@ package com.mptravel.reservation.model;
 
 import com.mptravel.vacation.entity.Vacation;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class ReservationBindingModel {
 
     private long id;
 
+    @Size(min = 5, message = "Invalid name. It should be at least 5 symbols.")
     private String name;
 
+    @Pattern(regexp = "^.+[@].+.[.].+$", message =
+            "Invalid Email. It should contain @ sign and a period.")
     private String email;
 
+    @Pattern(regexp = "[0-9]{8,}", message = "Invalid phone number. It should be ay least 8 digits.")
     private String phoneNumber;
 
+    @Size(min = 1, message = "Invalid price. It should be a positive number greater or equal to 1.")
     private int touristsNumber;
 
     private Vacation vacation;

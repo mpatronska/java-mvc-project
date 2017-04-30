@@ -4,7 +4,8 @@
     <meta charset="UTF-8"/>
     <title>MP Travel</title>
 
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../static/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet"/>
     <link th:href="@{/bootstrap/css/full-slider.css}" href="../static/bootstrap/css/full-slider.css" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,18 +24,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-
                 <h1 class="display-3" th:text="${vacation.title}"/>
                 <br/>
-
                 <img class="card-image-top img-fluid img-thumbnail" th:src="${vacation.imageUrl}"/>
-
                 <p th:text="${vacation.description}"/>
-
                 <p th:text="'Price: ' + ${vacation.price} + '&euro;'"/>
                 <p th:text="'Start date: ' + ${vacation.startDate}"/>
                 <p th:text="'End date: ' + ${vacation.endDate}"/>
-
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="card-button btn btn-warning" name="edit"
                        th:href="@{/vacations/edit/{id}(id=${vacation.id})}">Edit</a>
@@ -45,16 +41,12 @@
                     <a class="card-button btn btn-primary" name="my_holiday"
                        th:href="@{/reservations/add(id=${vacation.id})}">Reservation</a>
                 </div>
-
                 <br/>
                 <br/>
-
             </div>
         </div>
     </div>
 </main>
-
-
 
 <div th:replace="fragments/parts::footer">
 </div>
