@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../static/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/full-slider.css}" href="../static/bootstrap/css/full-slider.css" rel="stylesheet"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header th:replace="fragments/parts::menu">
+</header>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <h2 class="m-1">About MP Travel &nbsp;</h2>
+            <hr/>
+            <p th:text="${about.description}"/>
+
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="card-button btn btn-warning" name="edit"
+                   th:href="@{/about/edit/{id}(id=${about.id})}">Edit</a>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
+<div th:replace="fragments/parts::footer">
+</div>
+
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
