@@ -1,7 +1,10 @@
 package com.mptravel.reservation.model;
 
+import com.mptravel.user.entity.User;
 import com.mptravel.vacation.entity.Vacation;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -19,8 +22,11 @@ public class ReservationBindingModel {
     @Pattern(regexp = "[0-9]{8,}", message = "Invalid phone number. It should be ay least 8 digits.")
     private String phoneNumber;
 
-    @Size(min = 1, message = "Invalid price. It should be a positive number greater or equal to 1.")
+    @Min(1)
+    @NotNull(message = "Invalid number of tourists. It should be a positive number greater or equal to 1.")
     private int touristsNumber;
+
+    private User user;
 
     private Vacation vacation;
 
@@ -62,6 +68,14 @@ public class ReservationBindingModel {
 
     public void setTouristsNumber(int touristsNumber) {
         this.touristsNumber = touristsNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Vacation getVacation() {

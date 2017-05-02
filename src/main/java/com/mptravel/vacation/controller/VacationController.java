@@ -4,15 +4,12 @@ import com.mptravel.vacation.model.VacationBindingModel;
 import com.mptravel.vacation.model.VacationViewModel;
 import com.mptravel.vacation.service.VacationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -35,12 +32,16 @@ public class VacationController {
     }
 
     @GetMapping("/vacations/add")
-    public String getAddVacationPage() {
+    public String getAddVacationPage(@ModelAttribute VacationBindingModel vacationBindingModel) {
         return "add-vacation";
     }
 
     @PostMapping("/vacations/add")
-    public String addVacation(VacationBindingModel vacationBindingModel) {
+    public String addVacation(@Valid @ModelAttribute VacationBindingModel vacationBindingModel, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            System.out.print(bindingResult.getAllErrors());
+            return "add-vacation";
+        }
         this.vacationService.addVacation(vacationBindingModel);
 
         return "redirect:/vacations";
@@ -63,7 +64,13 @@ public class VacationController {
     }
 
     @PostMapping("vacations/edit/{id}")
-    public String editVacation(@PathVariable("id") long id, VacationBindingModel vacationBindingModel) {
+    public String editVacation(@PathVariable("id") long id, @Valid @ModelAttribute VacationBindingModel vacationBindingModel,
+                               BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+            return "edit-vacation";
+        }
+
         vacationBindingModel.setId(id);
         this.vacationService.updateVacation(vacationBindingModel);
 

@@ -2,6 +2,8 @@ package com.mptravel.reservation.model;
 
 import com.mptravel.vacation.entity.Vacation;
 
+import java.util.Set;
+
 public class ReservationViewModel {
 
     private long id;
@@ -14,7 +16,7 @@ public class ReservationViewModel {
 
     private int touristsNumber;
 
-    private Vacation vacation;
+    private Set<Vacation> vacations;
 
     public long getId() {
         return id;
@@ -56,11 +58,11 @@ public class ReservationViewModel {
         this.touristsNumber = touristsNumber;
     }
 
-    public Vacation getVacation() {
-        return vacation;
+    public Set<Vacation> getVacations() {
+        return vacations;
     }
 
-    public void setVacation(Vacation vacation) {
-        this.vacation = vacation;
+    public void setVacations(Set<Vacation> vacations) {
+        this.vacations = vacations;
     }
 }

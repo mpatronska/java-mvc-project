@@ -1,10 +1,6 @@
 package com.mptravel.vacation.entity;
 
-import com.mptravel.reservation.entity.Reservation;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity

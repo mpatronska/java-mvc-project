@@ -22,7 +22,8 @@
         <div class="container">
             <h1>Login in MP Travel</h1>
             <hr/>
-            <div style="color: red" th:if="${error} != null" th:text="${error}"></div>
+            <div class="alert-danger col-md-4 col-xs-4" th:if="${error} != null" th:text="${error}"></div>
+            <br/>
             <form method="post" class="col-md-4 col-xs-4">
                 <div class="form-group">
                     <label class="form-control-label" for="inputUsername">Username</label>

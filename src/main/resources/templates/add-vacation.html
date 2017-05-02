@@ -25,49 +25,57 @@
             <div class="col-12">
                 <div class="text-center"><h1 class="display-3">Add Vacation</h1></div>
                 <br/>
-
-                <!--<c:forEach items="${gameViolations}" var="gameViolation">-->
-                    <!--<div class="alert alert-danger" role="alert">-->
-                        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                            <!--<span aria-hidden="true">&times;</span>-->
-                        <!--</button>-->
-                        <!--<strong>Oh snap!</strong> ${gameViolation.getMessage()}-->
-                    <!--</div>-->
-                <!--</c:forEach>-->
-
-                <form method="post">
-                    <div class="form-group row">
+                <form method="post" th:object="${vacationBindingModel}">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('title')} ? 'has-danger'">
                         <label class="form-control-label">Title</label>
-                        <input name="title" min="5" class="form-control" placeholder="Enter Vacation Title"/>
+                        <input name="title" min="5" class="form-control" placeholder="Enter Vacation Title" th:field="*{title}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('title')}" th:text="${error}">
+                            Sorry, the title is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('description')} ? 'has-danger'">
                         <label class="form-control-label">Description</label>
-                        <textarea name="description" min="20" class="form-control" placeholder="Enter Vacation Description"></textarea>
+                        <textarea name="description" min="20" class="form-control" placeholder="Enter Vacation Description" th:field="*{description}"></textarea>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('description')}" th:text="${error}">
+                            Sorry, the description is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('imageUrl')} ? 'has-danger'">
                         <label class="form-control-label">Thumbnail</label>
-                        <input name="imageUrl" pattern="^(http|https)://.+" class="form-control" placeholder="Enter URL to Image"/>
+                        <input name="imageUrl" pattern="^(http|https)://.+" class="form-control" placeholder="Enter URL to Image" th:field="*{imageUrl}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('imageUrl')}" th:text="${error}">
+                            Sorry, the image url is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('price')} ? 'has-danger'">
                         <label class="form-control-label">Price</label>
                         <div class="input-group">
 
-                            <input name="price" step="0.01" min="0" class="form-control" placeholder="Enter Price"/>
+                            <input name="price" step="0.01" min="0" class="form-control" placeholder="Enter Price" th:field="*{price}"/>
                             <span class="input-group-addon">&euro;</span>
                         </div>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('price')}" th:text="${error}">
+                            Sorry, the price is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('startDate')} ? 'has-danger'">
                         <label class="form-control-label">Start Date</label>
-                        <input name="startDate" type="date" class="form-control" placeholder="yyyy-MM-dd"/>
+                        <input name="startDate" type="date" class="form-control" placeholder="yyyy-MM-dd" th:field="*{startDate}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('startDate')}" th:text="${error}">
+                            Sorry, the start date is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('endDate')} ? 'has-danger'">
                         <label class="form-control-label">End Date</label>
-                        <input name="endDate" type="date" class="form-control" placeholder="yyyy-MM-dd"/>
+                        <input name="endDate" type="date" class="form-control" placeholder="yyyy-MM-dd" th:field="*{endDate}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('endDate')}" th:text="${error}">
+                            Sorry, the end date is invalid
+                        </small>
                     </div>
 
                     <input type="submit" id="btn-add-game" class="btn btn-outline-success btn-lg btn-block"

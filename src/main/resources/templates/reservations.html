@@ -44,9 +44,9 @@
                         <td th:text="${reservation.phoneNumber}"/>
                         <td th:text="${reservation.touristsNumber}"/>
 
-                        <td th:text="${reservation.vacation.title}"/>
-                        <td><img th:src="${reservation.vacation.imageUrl}" th:height="100px"/></td>
-                        <td th:text="${reservation.touristsNumber * reservation.vacation.price} + ' &euro;'"/>
+                        <td th:text="${reservation.vacations[0].title}"/>
+                        <td><img th:src="${reservation.vacations[0].imageUrl}" th:height="100px"/></td>
+                        <td th:text="${reservation.touristsNumber * reservation.vacations[0].price} + ' &euro;'"/>
                     </tr>
                 </div>
                 </tbody>

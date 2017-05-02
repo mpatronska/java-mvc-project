@@ -26,16 +26,7 @@
                 <div class="text-center"><h1 class="display-3">Add Reservation</h1></div>
                 <br/>
 
-                <!--<c:forEach items="${gameViolations}" var="gameViolation">-->
-                <!--<div class="alert alert-danger" role="alert">-->
-                <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                <!--<span aria-hidden="true">&times;</span>-->
-                <!--</button>-->
-                <!--<strong>Oh snap!</strong> ${gameViolation.getMessage()}-->
-                <!--</div>-->
-                <!--</c:forEach>-->
-
-                <form method="post">
+                <!--<form method="post" th:object="${reservationBindingModel}">-->
                     <h1 class="display-3" th:text="${vacation.title}"/>
                     <br/>
 
@@ -47,24 +38,37 @@
                     <p th:text="'Start date: ' + ${vacation.startDate}"/>
                     <p th:text="'End date: ' + ${vacation.endDate}"/>
 
-                    <div class="form-group row">
+                <form method="post" th:object="${reservationBindingModel}">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? 'has-danger'">
                         <label class="form-control-label">Name</label>
-                        <input name="name" min="5" class="form-control" placeholder="Enter Your Name"/>
+                        <input name="name" min="5" class="form-control" placeholder="Enter Your Name" th:field="*{name}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('name')}" th:text="${error}">
+                            Sorry, the name is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('email')} ? 'has-danger'">
                         <label class="form-control-label">Email</label>
-                        <input name="email" pattern="^.+[@].+.[.].+$" class="form-control" placeholder="Enter Your Email"/>
+                        <input name="email" pattern="^.+[@].+.[.].+$" class="form-control" placeholder="Enter Your Email" th:field="*{email}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('email')}" th:text="${error}">
+                            Sorry, the email is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('phoneNumber')} ? 'has-danger'">
                         <label class="form-control-label">Phone Number</label>
-                        <input name="phoneNumber" pattern="[0-9]{8,}" class="form-control" placeholder="Enter Your Phone Number"/>
+                        <input name="phoneNumber" pattern="[0-9]{8,}" class="form-control" placeholder="Enter Your Phone Number" th:field="*{phoneNumber}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('phoneNumber')}" th:text="${error}">
+                            Sorry, the phone number is invalid
+                        </small>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" th:classappend="${#fields.hasErrors('touristsNumber')} ? 'has-danger'">
                         <label class="form-control-label">Number of Tourists</label>
-                        <input name="touristsNumber" min="1" class="form-control" placeholder="Enter Number Of Tourists"/>
+                        <input name="touristsNumber" min="1" class="form-control" placeholder="Enter Number Of Tourists" th:field="*{touristsNumber}"/>
+                        <small class="alert-danger" th:each="error : ${#fields.errors('touristsNumber')}" th:text="${error}">
+                            Sorry, the number of tourists is invalid
+                        </small>
                     </div>
 
                     <input type="submit" id="btn-add-game" class="btn btn-outline-success btn-lg btn-block"

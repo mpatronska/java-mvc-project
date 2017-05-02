@@ -1,9 +1,11 @@
 package com.mptravel.reservation.entity;
 
+import com.mptravel.user.entity.User;
 import com.mptravel.vacation.entity.Vacation;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "reservations")
@@ -22,9 +24,17 @@ public class Reservation {
 
     private int touristsNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
-    private Vacation vacation;
+    @ManyToMany
+    @JoinTable(name = "reservations_users",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "reservations_vacations",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "vacation_id"))
+    private Set<Vacation> vacations;
 
     public Reservation() {
     }
@@ -69,11 +79,20 @@ public class Reservation {
         this.touristsNumber = touristsNumber;
     }
 
-    public Vacation getVacation() {
-        return vacation;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setVacation(Vacation vacation) {
-        this.vacation = vacation;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
+
+    public Set<Vacation> getVacations() {
+        return vacations;
+    }
+
+    public void setVacations(Set<Vacation> vacations) {
+        this.vacations = vacations;
+    }
+
 }
