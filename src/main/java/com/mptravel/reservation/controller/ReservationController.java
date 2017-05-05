@@ -23,14 +23,16 @@ import java.util.List;
 @Controller
 public class ReservationController {
 
-    @Autowired
     private ReservationService reservationService;
-
-    @Autowired
     private VacationService vacationService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
+    ReservationController(ReservationService reservationService, VacationService vacationService, ModelMapper modelMapper) {
+        this.reservationService = reservationService;
+        this.vacationService = vacationService;
+        this.modelMapper = modelMapper;
+    }
 
     @GetMapping("/reservations")
     public String getReservationsPage(Model model) {

@@ -21,8 +21,12 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @Autowired
     private BasicUserService userService;
+
+    @Autowired
+    public UserController(BasicUserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/register")
     public String getRegisterPage(@ModelAttribute RegistrationModel registrationModel){

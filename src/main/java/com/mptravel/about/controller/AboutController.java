@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class AboutController {
 
-    @Autowired
     private AboutService aboutService;
+
+    @Autowired
+    public AboutController(AboutService aboutService) {
+        this.aboutService = aboutService;
+    }
 
     @GetMapping("/about")
     public String getAboutPage(Model model) {
@@ -46,4 +49,5 @@ public class AboutController {
 
         return "redirect:/about";
     }
+
 }

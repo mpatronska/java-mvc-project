@@ -18,14 +18,17 @@ import java.util.List;
 @Controller
 public class VacationController {
 
-    @Autowired
     private VacationService vacationService;
-
-    @Autowired
     private ReservationService reservationService;
 
+    @Autowired
+    public VacationController(VacationService vacationService, ReservationService reservationService) {
+        this.vacationService = vacationService;
+        this.reservationService = reservationService;
+    }
 
-//    TODO: Sample with AJAX
+
+    //    TODO: Sample with AJAX
 //    @GetMapping("/vacations")
 //    public ResponseEntity<List<VacationViewModel>> getVacationsPage() {
 //        List<VacationViewModel> vacations = this.vacationService.getVacations();

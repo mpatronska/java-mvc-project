@@ -19,8 +19,12 @@ import javax.validation.Valid;
 @Controller
 public class ContactController {
 
-    @Autowired
     private ContactService contactService;
+
+    @Autowired
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
 
     @GetMapping("/contacts")
     public String getContactPage(Model model) {
