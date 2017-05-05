@@ -5,7 +5,6 @@ import com.mptravel.about.model.AboutBindingModel;
 import com.mptravel.about.model.AboutViewModel;
 import com.mptravel.about.repository.AboutRepository;
 import com.mptravel.about.service.AboutService;
-import com.mptravel.trip.entity.Trip;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -46,4 +46,29 @@ public class ContactController {
 
         return "redirect:/contacts";
     }
+
+    //    TODO: Sample with Google Maps
+    @GetMapping("/contacts/map")
+    public String getAboutMapPage(Model model) {
+        String geoJson = "{\n" +
+                "  \"type\": \"FeatureCollection\",\n" +
+                "  \"features\": [\n" +
+                "    {\n" +
+                "      \"type\": \"Feature\",\n" +
+                "      \"geometry\": {\n" +
+                "        \"type\": \"Point\",\n" +
+                "        \"coordinates\": [\n" +
+                "          23.352284118500393,\n" +
+                "          42.666746158374856\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      \"properties\": {}\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        model.addAttribute("geoJson", geoJson);
+
+        return "map";
+    }
 }

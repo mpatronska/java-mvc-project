@@ -13,4 +13,7 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
 
     @Query("SELECT r FROM Reservation AS r JOIN r.users AS u JOIN r.vacations WHERE u.id = :id ")
     List<Reservation> findReservationsByUser(@Param("id") long id);
+
+    @Query("SELECT r FROM Reservation AS r JOIN r.vacations AS v JOIN r.vacations WHERE v.id = :id ")
+    List<Reservation> findReservationsByVacation(@Param("id") long id);
 }

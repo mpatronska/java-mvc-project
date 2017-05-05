@@ -21,6 +21,10 @@
     <header th:replace="fragments/parts::home_header">
     </header>
 
+    <table id="vacations_table">
+
+    </table>
+
     <div th:replace="fragments/parts::footer">
     </div>
 
@@ -28,10 +32,36 @@
     <script th:src="@{/bootstrap/js/jquery.js}"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 
-    <script>
+    <script type="text/javascript">
         $('.carousel').carousel({
             interval: 5000 //changes the speed
         })
+
+//        TODO: Sample with AJAX
+//        $(function () {
+////            $('div#menu1 > div#menu2 > div#bs-example-navbar-collapse-1 > ul#menu4 > li#vacations_menu').click(loadVacations());
+//        })
+//
+//        function loadVacations() {
+//            $.ajax({
+//                type: 'GET',
+//                url: '/vacations',
+//                dataType: 'json',
+//                contentType: 'application/json',
+//                success: function (vacations) {
+//
+//                    $('.carousel').remove();
+//
+//                    $.each(vacations, function(i, vacation) {
+//                        var title = vacation.title;
+//                        $('#vacations_table')
+//                            .append($('<thead><tr><th>Title</th></tr></thead><tbody><tr><td>' + title +'</td></tr></tbody>')
+//                            )
+//                    });
+//                }
+//            });
+//        }
+
     </script>
 </body>
 </html>

@@ -52,4 +52,12 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setVacations(vacations);
         this.reservationRespository.save(reservation);
     }
+
+    @Override
+    public void deleteReservationByVacationId(long vacationId) {
+        List<Reservation> reservations = this.reservationRespository.findReservationsByVacation(vacationId);
+        for (Reservation reservation : reservations) {
+            this.reservationRespository.delete(reservation.getId());
+        }
+    }
 }

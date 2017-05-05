@@ -24,7 +24,7 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/vacations">Vacations</a>
+                    <a class="nav-link" href="/vacations">Vacations</a> <!--TODO: onclick="loadVacations()"-->
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a class="nav-link" href="/reservations">Reservations</a>
@@ -51,8 +51,8 @@
     </div>
 </nav>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu_home">
-    <div class="container">
+<nav id="menu1" class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu_home">
+    <div id="menu2" class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -63,12 +63,12 @@
             <a class="navbar-brand" href="/">MP Travel</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul id="menu4" class="nav navbar-nav">
                 <li class="nav-item">
                     <a href="/about">About</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/vacations">Vacations</a>
+                <li id="vacations_menu" class="nav-item">
+                    <a href="/vacations" onclick="loadVacations()">Vacations</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a href="/reservations">Reservations</a>
@@ -114,7 +114,6 @@
         <li data-target="#myCarousel" data-slide-to="13"></li>
         <li data-target="#myCarousel" data-slide-to="14"></li>
         <li data-target="#myCarousel" data-slide-to="15"></li>
-        <li data-target="#myCarousel" data-slide-to="16"></li>
     </ol>
 
     <div class="carousel-inner">
@@ -194,12 +193,6 @@
             <div class="fill" style="background-image:url('https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2016/08/Dubrovnik-Croatia_CS-8424f89504c5.jpg');"></div>
             <div class="carousel-caption">
                 <h2>Albania</h2>
-            </div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://www.findbesthoteldeals.com/wp-content/uploads/2016/04/australia-travel-photography.jpg');"></div>
-            <div class="carousel-caption">
-                <h2>Australia</h2>
             </div>
         </div>
         <div class="item">

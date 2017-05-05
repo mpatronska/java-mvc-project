@@ -12,4 +12,6 @@ public interface ReservationService {
     List<ReservationViewModel> getReservationsByUser(User user);
 
     void addReservation(ReservationBindingModel reservationBindingModel);
+
+    void deleteReservationByVacationId(long vacationId);
 }

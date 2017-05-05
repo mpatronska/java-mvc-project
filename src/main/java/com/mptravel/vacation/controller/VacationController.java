@@ -1,9 +1,12 @@
 package com.mptravel.vacation.controller;
 
+import com.mptravel.reservation.service.ReservationService;
 import com.mptravel.vacation.model.VacationBindingModel;
 import com.mptravel.vacation.model.VacationViewModel;
 import com.mptravel.vacation.service.VacationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,17 +21,32 @@ public class VacationController {
     @Autowired
     private VacationService vacationService;
 
+    @Autowired
+    private ReservationService reservationService;
+
+
+//    TODO: Sample with AJAX
+//    @GetMapping("/vacations")
+//    public ResponseEntity<List<VacationViewModel>> getVacationsPage() {
+//        List<VacationViewModel> vacations = this.vacationService.getVacations();
+//
+//        if (null == vacations) {
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+//
+//        return new ResponseEntity(vacations, HttpStatus.OK);
+//    }
+
     @GetMapping("/vacations")
-    public String /*ResponseEntity<List<VacationViewModel>>*/ getVacationsPage(Model model) {
+    public String getVacationsPage(Model model) {
         List<VacationViewModel> vacations = this.vacationService.getVacations();
         model.addAttribute("vacations", vacations);
 
-        for (VacationViewModel vacation : vacations) {
-            System.out.print(vacation.getImageUrl());
-        }
+//        for (VacationViewModel vacation : vacations) {
+//            System.out.print(vacation.getImageUrl());
+//        }
 
         return "vacations";
-//        return new ResponseEntity<List<VacationViewModel>>(vacations, HttpStatus.OK);
     }
 
     @GetMapping("/vacations/add")
@@ -56,7 +74,7 @@ public class VacationController {
     }
 
     @GetMapping("vacations/edit/{id}")
-    public String getEditVacationPage(@PathVariable("id") long id, Model model) {
+    public String getEditVacationPage(@PathVariable("id") long id, Model model, @ModelAttribute VacationBindingModel vacationBindingModel) {
         VacationViewModel vacationViewModel = this.vacationService.findVacationById(id);
         model.addAttribute("vacation", vacationViewModel);
 
@@ -64,10 +82,12 @@ public class VacationController {
     }
 
     @PostMapping("vacations/edit/{id}")
-    public String editVacation(@PathVariable("id") long id, @Valid @ModelAttribute VacationBindingModel vacationBindingModel,
+    public String editVacation(@PathVariable("id") long id, Model model, @Valid @ModelAttribute VacationBindingModel vacationBindingModel,
                                BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
+            VacationViewModel vacationViewModel = this.vacationService.findVacationById(id);
+            model.addAttribute("vacation", vacationViewModel);
             return "edit-vacation";
         }
 
@@ -87,6 +107,7 @@ public class VacationController {
 
     @PostMapping("vacations/delete/{id}")
     public String deleteVacation(@PathVariable("id") long id) {
+        this.reservationService.deleteReservationByVacationId(id);
         this.vacationService.deleteVacationById(id);
 
         return "redirect:/vacations";
